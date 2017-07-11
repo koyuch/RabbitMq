@@ -241,9 +241,6 @@ class RabbitMqExtension extends Nette\DI\CompilerExtension
 		foreach ($connections as $name => $config) {
 			$config = $this->mergeConfig($config, $this->connectionDefaults);
 
-			Nette\Utils\Validators::assertField($config, 'user', 'string:3..', "The config item '%' of connection {$this->name}.{$name}");
-			Nette\Utils\Validators::assertField($config, 'password', 'string:3..', "The config item '%' of connection {$this->name}.{$name}");
-
 			$connection = $builder->addDefinition($serviceName = $this->prefix($name . '.connection'))
 				->setClass('Kdyby\RabbitMq\Connection')
 				->setArguments([
